@@ -14,6 +14,8 @@ The algorithm implemented in **GA_binary.c** works with binary encoding of the s
 The objective function must be provided within the **opt_func_min(x)** function in the code:
 
 ```c
+#define R_MAX 600.5
+#define R_MIN -600.5
 double opt_func_min (double x)
 {
 	int result = 0;
@@ -27,13 +29,17 @@ double opt_func_min (double x)
 }
 ```
 
-The above function minimizes $\sum_{i=1}^{10}(x^2)$ within the search space [-600.5,600.5].
+The above function minimizes $\sum_{i=1}^{10}(x^2)$ within the search space [R_MIN,R_MAX].
 
 ### Compiling (Linux)
 
 **g++ GA_binary.c -o output_program -lm**
 
-## Expected Output
+### Exectuion (Linux)
+
+**./output_program**
+
+### Expected Output
 
 ```c
 --------------------------------------------------------
@@ -47,3 +53,61 @@ The above function minimizes $\sum_{i=1}^{10}(x^2)$ within the search space [-60
 	Value of opt. min f(X) : 0.0000000000000000000
 --------------------------------------------------------
 ```
+
+## Simulated Annealing
+
+The algorithm is named after the process of physical
+annealing with solids, in which a crystalline solid is heated and then allowed to cool very slowly until it achieves its most regular possible crystal lattice configuration, and thus is free of crystal defects.  Simulated annealing establishes the connection between this type of thermodynamic behavior and the search for global minima for a discrete optimization problem.
+
+The algorithm implemented in **SA.c** follows the standard configuration of the algorithm when it was proposed.
+
+The following variables within the code can be fine tunned for better performance, depending on the problem.
+
+```c
+double big_t = 1.0;
+double big_t_min = 0.00001;
+```
+
+The objective function to be minimized must be definede within the **cost(x)** function in the code.
+
+```c
+#define MAX_VAl 600.5
+#define MIN_VAL -600.5
+double cost (double x)
+{
+	double cost = 0.0;
+
+	for (int i = 0; i < 10; i++)
+	{
+		cost += pow(x,2);
+	}
+
+	return cost;
+}
+```
+
+The above function minimizes $\sum_{i=1}^{10}(x^2)$ within the search space [MIN_VAL,MAX_VAl].
+
+### Compiling (Linux)
+
+**g++ SA.c -o output_program -lm**
+
+### Exectuion (Linux)
+
+**./output_program**
+
+### Expected Output
+
+```c
+Calculation simulated anealing process...
+Simulated anealing ended.
+
+========= Results =========
+
+Solution: 600.500000
+Solution cost: 14695.400030
+```
+
+# Contact
+
+In case of any bugs and/or sugestions, send an email to wsg@icomp.ufam.edu.br or williansoaresgirao@gmail.com.

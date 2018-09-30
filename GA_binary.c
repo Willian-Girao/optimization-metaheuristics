@@ -1,14 +1,10 @@
 /*
 		Federal University of Amazon
+		Fluminense Federal University
 			Computing Institute
 Laboratory of Algorithm Complexity and Optmization
 
-	Oriented by: Mário Salvatierra Junior
-	  Developd by: Willian Soares Girao
-
-
-       The following code implements a Genetic Algorithm
-to minimize a function described in the 'double opt_func_min(double real)'.
+	  Author: Willian Soares Girao
 */
 
 #include <stdio.h>
@@ -20,9 +16,7 @@ to minimize a function described in the 'double opt_func_min(double real)'.
 #define R_MAX 600.5 /* Search space upper bound */
 #define R_MIN -600.5 /* Seach space lower bound */
 #define L 20 /* chromosssome length */
-
-double tol = pow(10.0, -4); /* Stop the search only the best solution precision reaches four decimal places of precision */
-double fopt = 0.0;
+#define T_MAX 500 /* maximum number of iterations */
 
 struct top_half 
 {	
@@ -38,7 +32,7 @@ int selected_already[POP_SIZE/2] = {-1, -1, -1, -1}; /* Used to control parents 
 /* Function to be optimized - 'real' is the real valued interpretation of the binary coding */
 double opt_func_min (double real)
 {
-	/* function: sum{_1}{^10}(x^2) */
+	/* function: sum{_1}{^10}(x^2) - search space [-600.5,600.5]*/
 	int result = 0;
 
 	for (int i = 0; i < 10; i++)
@@ -312,7 +306,7 @@ int main () {
 
 	num_populations = 1;
 	
-	while ((best_cromossome - fopt) > tol) { // (best_cromossome - fopt) > tol
+	for (int j = 0; j < T_MAX; j++) {
 		selection();
 		new_best();
 
@@ -327,7 +321,6 @@ int main () {
 		calc_fitness();
 
 		num_populations++;
-
 	}
 
 	printf("\n");	
@@ -359,6 +352,3 @@ int main () {
 
 	return 0;
 }
-
-
-// g++ my_program.c -o my_program -lm
