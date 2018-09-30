@@ -27,7 +27,7 @@ double opt_func_min (double x)
 }
 ```
 
-The above function minimizes $$\sum_{i=1}^{10}(x^2)$$ within the search space [-600.5,600.5].
+The above function minimizes $\sum_{i=1}^{10}(x^2)$ within the search space [-600.5,600.5].
 
 ### Compiling (Linux)
 
