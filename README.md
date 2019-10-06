@@ -4,6 +4,7 @@ Implementations in C language of a few optimization meta-heuristics for global o
 
 * **Genetic Algorithm**
 * **Simulated Annealing**
+* [**Random Key Genetic Algorithm**](https://github.com/Willian-Girao/random-key_genetic_algorithms)
 
 ## Genetic Algorithm
 
